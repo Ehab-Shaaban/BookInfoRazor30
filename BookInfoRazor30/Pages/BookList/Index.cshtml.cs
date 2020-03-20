@@ -17,11 +17,25 @@ namespace BookInfoRazor30.Pages.BookList
         {
             _context = context;
         }
-
         public IEnumerable<Book> Books { get; set; }
-        async public Task  OnGet()
+        public async Task  OnGet()
         {
             Books = await _context.Book.ToListAsync();
+        }
+
+        public async Task<IActionResult> OnPostDelete(int id)
+        {
+            var book = await _context.Book.FindAsync(id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                _context.Book.Remove(book);
+                await _context.SaveChangesAsync();
+                return RedirectToPage("Index");
+            }
         }
     }
 }

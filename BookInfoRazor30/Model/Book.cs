@@ -14,5 +14,6 @@ namespace BookInfoRazor30.Model
         [Required]
         public string Name { get; set; }
         public string Auther { get; set; }
+        public string ISBN { get; set; }
     }
 }
