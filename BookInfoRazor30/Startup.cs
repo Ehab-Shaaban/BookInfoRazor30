@@ -26,7 +26,7 @@ namespace BookInfoRazor30
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(option=>option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            
+            services.AddControllersWithViews();
             services.AddRazorPages().AddRazorRuntimeCompilation();
         }
 
@@ -53,6 +53,7 @@ namespace BookInfoRazor30
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });
         }
